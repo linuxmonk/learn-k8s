@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginx-all-nodes
+  namespace: default
+  labels:
+    app: nginx-all-nodes-label
+spec:
+  selector:
+    matchLabels:
+      name: nginx-all-nodes-label
+  template:
+    metadata:
+      labels:
+        name: nginx-all-nodes-label
+    spec:
+      containers:
+      - name: nginx
+        image: nginx

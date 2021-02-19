@@ -1,0 +1,8 @@
+apiVersion: stable.linux.com/v1
+kind: Backup
+metadata:
+  name: mybackup
+spec:
+  cronSpec: "* * * * * */5"
+  image: busybox
+  replicas: 4

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-cm
+  labels:
+    role: web
+spec:
+  volumes:
+  - name: conf
+    configMap:
+      # name maps to the configMap object created via the command
+      # kubectl create cm nginx-cm --from-file nginx-custom-config.yaml
+      name: nginx-cm 
+      items:
+      - key: nginx-custom-config.conf
+        path: default.conf
+  containers:
+  - name: nginx-cm
+    image: nginx
+    volumeMounts:
+    - name: conf
+      mountPath: /etc/nginx/conf.d
